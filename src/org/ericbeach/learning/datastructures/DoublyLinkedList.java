@@ -8,7 +8,7 @@ public class DoublyLinkedList<T extends Comparable<? super T>> {
   private DoublyLinkedListNode<T> startNode;
   private DoublyLinkedListNode<T> endNode;
   private int size = 0;
- 
+
   /**
    * Insert a node into the doubly linked list at a specific index.
    * @param index The index number to insert the node at. This is the final
@@ -20,7 +20,7 @@ public class DoublyLinkedList<T extends Comparable<? super T>> {
     if (index > size) {
       return;
     }
-    
+
     if (size == 0) {
       // Deal with special case of the first node.
       startNode = newNode;
@@ -36,7 +36,7 @@ public class DoublyLinkedList<T extends Comparable<? super T>> {
       for (int i = 0; i < index - 1; i++) {
         currentNode = currentNode.getNextNode(); 
       }
-      
+
       newNode.setPreviousNode(currentNode);
       newNode.setNextNode(currentNode.getNextNode());
       currentNode.setNextNode(newNode);
@@ -45,7 +45,7 @@ public class DoublyLinkedList<T extends Comparable<? super T>> {
         newNode.getNextNode().setPreviousNode(newNode);
       }
     }
-    
+
     // Reset start and end node, if necessary.
     if (index == size) {
       endNode = newNode;
@@ -55,7 +55,7 @@ public class DoublyLinkedList<T extends Comparable<? super T>> {
     }
     size++;
   }
-  
+
   /**
    * Append a node to the end of the list.
    * @param newNode Node to be appended.
@@ -63,7 +63,7 @@ public class DoublyLinkedList<T extends Comparable<? super T>> {
   public void appendNode(DoublyLinkedListNode<T> newNode) {
     insertNode(size, newNode);
   }
-  
+
   /**
    * Delete a node at a specific index.
    * @param index The index of the element to be deleted.
@@ -74,7 +74,7 @@ public class DoublyLinkedList<T extends Comparable<? super T>> {
     if (index > size) {
       return null;
     }
-    
+
     DoublyLinkedListNode<T> deleteNode = null;
     DoublyLinkedListNode<T> newNextNode = null;
     
@@ -83,7 +83,7 @@ public class DoublyLinkedList<T extends Comparable<? super T>> {
     for (int i = 0; i < index - 1; i++) {
       current = current.getNextNode(); 
     }
-    
+
     // Deal with special cases.
     if (size == 1) {
       deleteNode = current;
@@ -102,11 +102,11 @@ public class DoublyLinkedList<T extends Comparable<? super T>> {
       newNextNode.setPreviousNode(current);
       current.setNextNode(newNextNode); 
     }
-    
+
     size--;
     return deleteNode;
   }
-  
+
   /**
    * Return the size of the list.
    * @return The size of the linked list.

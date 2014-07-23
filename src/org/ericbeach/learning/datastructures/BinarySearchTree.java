@@ -6,16 +6,15 @@ package org.ericbeach.learning.datastructures;
  */
 public class BinarySearchTree <T extends Comparable<? super T>> {
   private BinarySearchTreeNode<T> rootNode;
-  
+
   /**
    * Perform a binary search for a node using the binary search tree.
-   *
    * @param targetVal
    */
   public BinarySearchTreeNode<T> search(T targetVal) {
     return performBinarySearch(targetVal, rootNode);
   }
-  
+
   /**
    * Perform the binary search recursively.
    * 
@@ -45,7 +44,7 @@ public class BinarySearchTree <T extends Comparable<? super T>> {
     if (currentRootNode == null) {
       return null;
     }
-    
+
     // RECURSIVE CASE
     if (currentRootNode.getValue().compareTo(targetValue) == 0) {
       return currentRootNode;
@@ -56,7 +55,7 @@ public class BinarySearchTree <T extends Comparable<? super T>> {
     }
     return null;
   }
-  
+
   /**
    * The size of the BST, calculated as the number of nodes including this one.
    * @param node The root node of the tree whose size needs to be computed.
@@ -66,9 +65,11 @@ public class BinarySearchTree <T extends Comparable<? super T>> {
     if (node == null) {
       return 0;
     }
+    // Compute the size of the BST by adding the current node (1) and then recursively
+    // computing the size of the left and right child.
     return 1 + size(node.getLeftChild()) + size(node.getRightChild());
   }
-  
+
   /**
    * Insert a value into the BST.
    * @param val The value to be inserted into the BST.
@@ -76,7 +77,7 @@ public class BinarySearchTree <T extends Comparable<? super T>> {
   public void insert(T val) {
     insert(new BinarySearchTreeNode<T>(val));
   }
-  
+
   /**
    * Insert a node into the BST.
    * @param newNode The node to be inserted into the BST.
@@ -84,13 +85,13 @@ public class BinarySearchTree <T extends Comparable<? super T>> {
   public void insert(BinarySearchTreeNode<T> newNode) {
     BinarySearchTreeNode<T> parentNode = null;
     BinarySearchTreeNode<T> nextNodePos = rootNode;
-    
+
     // Traverse down the tree to find the position where the next node
     // should exist, which is where we will insert it.
     while (nextNodePos != null) {
       parentNode = nextNodePos;
       if (nextNodePos.getValue().compareTo(newNode.getValue()) == 0) {
-        // Attempting to insert duplicate
+        // Attempting to insert duplicate value, so drop it. This BST cannot handle duplicates.
         return;
       } else if (nextNodePos.getValue().compareTo(newNode.getValue()) > 0) {
         nextNodePos = nextNodePos.getLeftChild();
@@ -98,9 +99,9 @@ public class BinarySearchTree <T extends Comparable<? super T>> {
         nextNodePos = nextNodePos.getRightChild();
       }
     }
-    
+
     newNode.setParent(parentNode);
-    
+
     if (parentNode == null) {
       rootNode = newNode;
     } else  if (parentNode.getValue().compareTo(newNode.getValue()) > 0) {
@@ -109,27 +110,27 @@ public class BinarySearchTree <T extends Comparable<? super T>> {
       parentNode.setRightChild(newNode);
     }
   }
-  
+
   /**
    * Delete a value from the BST.
-   * @param value The value to be deleted from the BST.
+   * @param value The value of the node to be deleted from the BST.
    */
   public void deleteNode(T value) {
     BinarySearchTreeNode<T> nodeToDelete = search(value);
-    
+
     /**
      * Case 0: Attempting to delete a node that does not exist.
      */
     if (nodeToDelete == null) {
       return;
     }
-    
+
     /**
      * Case 1: Node to be deleted has zero children, so just delete.
      */
     if (nodeToDelete.getNumChildren() == 0) {
       // Delete the node and re-wire the parent.
-      // Ensure that we delete the proper child from the parent.
+      // Ensure that we delete the proper child from the deleted node's parent.
       if (nodeToDelete.getParent().getLeftChild() != null &&
           nodeToDelete.getParent().getLeftChild().getValue() == value) {
         // Node to delete is a left-child.
@@ -139,7 +140,7 @@ public class BinarySearchTree <T extends Comparable<? super T>> {
         nodeToDelete.getParent().setRightChild(null);
       }
     }
-    
+
     /**
      * Case 2: Node to be deleted has one child.
      */
@@ -152,8 +153,8 @@ public class BinarySearchTree <T extends Comparable<? super T>> {
         newChild = nodeToDelete.getRightChild();        
       }
       newChild.setParent(nodeToDelete.getParent());
-      
-      // Delete the node
+
+      // Delete the node.
       if (nodeToDelete.getParent().getLeftChild() != null &&
           nodeToDelete.getParent().getLeftChild().getValue() == value) {
         // Node to delete is a left-child.
@@ -163,31 +164,31 @@ public class BinarySearchTree <T extends Comparable<? super T>> {
         nodeToDelete.getParent().setRightChild(newChild);
       }
     }
-    
+
     /**
      * Case 3: Node to be deleted has two children.
      */
     if (nodeToDelete.getNumChildren() == 2) {
       // Part A: Find the successor of the node you desire to delete.
       BinarySearchTreeNode<T> successor = nodeToDelete.getSuccessorNode();
-      
+
       // Part B: Swap the to-delete node with the successor node.
       T temp = nodeToDelete.getValue();
       nodeToDelete.setValue(successor.getValue());
       successor.setValue(temp);
-      
+
       // Part C: Delete to delete node, which has been swapped and is now
       // guaranteed to fall into the case of having zero children or one child.
       // Run delete on successor since successor now holds the value we want
       // to delete.
       deleteNode(successor.getValue());
     }
-    
+
     nodeToDelete = null;
   }
-  
+
   /**
-   * The node to be deleted from the BST.
+   * Delete a specific node from from the BST.
    * @param node The node to be deleted from the BST.
    */
   public void deleteNode(BinarySearchTreeNode<T> node) {

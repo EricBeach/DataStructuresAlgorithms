@@ -1,8 +1,5 @@
 package org.ericbeach.learning.datastructures;
 
-import org.ericbeach.learning.datastructures.BinarySearchTree;
-import org.ericbeach.learning.datastructures.BinarySearchTreeNode;
-
 import junit.framework.TestCase;
 
 /**

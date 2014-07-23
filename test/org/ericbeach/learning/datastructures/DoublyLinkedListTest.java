@@ -1,8 +1,5 @@
 package org.ericbeach.learning.datastructures;
 
-import org.ericbeach.learning.datastructures.DoublyLinkedList;
-import org.ericbeach.learning.datastructures.DoublyLinkedListNode;
-
 import junit.framework.TestCase;
 
 /**

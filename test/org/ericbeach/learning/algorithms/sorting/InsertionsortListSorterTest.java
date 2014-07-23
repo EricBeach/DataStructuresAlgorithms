@@ -1,8 +1,5 @@
 package org.ericbeach.learning.algorithms.sorting;
 
-import org.ericbeach.learning.algorithms.sorting.InsertionsortListSorter;
-import org.ericbeach.learning.algorithms.sorting.ListSorter;
-
 /**
  * Tests the sorting functionality of the insertion sort implementation.
  */

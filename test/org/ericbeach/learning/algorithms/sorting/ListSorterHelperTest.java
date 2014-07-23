@@ -1,7 +1,5 @@
 package org.ericbeach.learning.algorithms.sorting;
 
-import org.ericbeach.learning.algorithms.sorting.ListSorterHelper;
-
 import junit.framework.TestCase;
 
 import java.sql.Timestamp;
@@ -20,7 +18,7 @@ public class ListSorterHelperTest extends TestCase {
     stringList.add("A");
     stringList.add("A123");
     stringList.add("123");
- 
+
     ListSorterHelper<String> helper = new ListSorterHelper<String>();
     assertEquals("my string", stringList.get(0));
     helper.swap(stringList, 0, 1);
@@ -37,13 +35,13 @@ public class ListSorterHelperTest extends TestCase {
 
   public void testSwapLongs() {
     ListSorterHelper<Timestamp> helper = new ListSorterHelper<Timestamp>();
-    
+
     List<Timestamp> timestampList = new ArrayList<Timestamp>();
     timestampList.add(new Timestamp(1386037882000L));
     timestampList.add(new Timestamp(1386037876000L));
     timestampList.add(new Timestamp(1386037886000L));
     timestampList.add(new Timestamp(1386037881000L));
- 
+
     assertEquals(new Timestamp(1386037882000L), timestampList.get(0));
     helper.swap(timestampList, 0, 1);
     assertEquals(new Timestamp(1386037876000L), timestampList.get(0));

@@ -1,8 +1,5 @@
 package org.ericbeach.learning.datastructures;
 
-import org.ericbeach.learning.datastructures.SinglyLinkedList;
-import org.ericbeach.learning.datastructures.SinglyLinkedListNode;
-
 import junit.framework.TestCase;
 
 /**

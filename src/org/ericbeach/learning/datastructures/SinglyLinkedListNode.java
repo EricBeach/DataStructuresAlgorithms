@@ -7,7 +7,7 @@ package org.ericbeach.learning.datastructures;
 public class SinglyLinkedListNode<T extends Comparable<? super T>> {
   private T value;
   private SinglyLinkedListNode<T> nextNode;
-  
+
   /**
    * Create a singly linked list node.
    * @param val The value to be stored in the linked list node.
@@ -15,7 +15,7 @@ public class SinglyLinkedListNode<T extends Comparable<? super T>> {
   public SinglyLinkedListNode(T val) {
     value = val;
   }
- 
+
   /**
    * Return the linked list node value. 
    * @return The value in the node.
@@ -31,7 +31,7 @@ public class SinglyLinkedListNode<T extends Comparable<? super T>> {
   public SinglyLinkedListNode<T> getNextNode() {
     return nextNode;
   }
-  
+
   /**
    * Set the next node in the linked list.
    * @param next Next node in the linked list.

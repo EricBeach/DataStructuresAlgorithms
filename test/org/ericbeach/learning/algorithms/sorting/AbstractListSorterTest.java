@@ -1,7 +1,5 @@
 package org.ericbeach.learning.algorithms.sorting;
 
-import org.ericbeach.learning.algorithms.sorting.ListSorter;
-
 import junit.framework.TestCase;
 
 import java.sql.Timestamp;
@@ -25,28 +23,28 @@ public abstract class AbstractListSorterTest extends TestCase {
 
   private List<Integer> unsortedTinyIntegerList;
   private List<Integer> sortedTinyIntegerList;
-  
+
   private List<String> unsortedStringList;
   private List<String> sortedStringList;
 
   private List<Timestamp> unsortedTimestampList;
   private List<Timestamp> sortedTimestampList;
-  
+
   protected void setUp() throws Exception {
     unsortedOneIntegerList = new ArrayList<Integer>();
     unsortedOneIntegerList.add(0);
-    
+
     sortedOneIntegerList = new ArrayList<Integer>();
     sortedOneIntegerList.add(0);
 
     unsortedTwoIntegerList = new ArrayList<Integer>();
     unsortedTwoIntegerList.add(10);
     unsortedTwoIntegerList.add(0);
-    
+
     sortedTwoIntegerList = new ArrayList<Integer>();
     sortedTwoIntegerList.add(0);
     sortedTwoIntegerList.add(10);
-    
+
     unsortedIntegerList = new ArrayList<Integer>();
     unsortedIntegerList.add(100);
     unsortedIntegerList.add(50);
@@ -64,15 +62,15 @@ public abstract class AbstractListSorterTest extends TestCase {
     sortedIntegerList.add(60);
     sortedIntegerList.add(100);
     sortedIntegerList.add(9000);
-    
+
     unsortedTinyIntegerList = new ArrayList<Integer>();
     unsortedTinyIntegerList.add(10);
     unsortedTinyIntegerList.add(0);
-    
+
     sortedTinyIntegerList = new ArrayList<Integer>();
     sortedTinyIntegerList.add(0);
     sortedTinyIntegerList.add(10);
-    
+
     unsortedStringList = new ArrayList<String>();
     unsortedStringList.add("my string");
     unsortedStringList.add("my String");
@@ -101,20 +99,20 @@ public abstract class AbstractListSorterTest extends TestCase {
     sortedTimestampList.add(new Timestamp(1386037882000L));
     sortedTimestampList.add(new Timestamp(1386037886000L));
   }
-  
+
   protected void tearDown() throws Exception {
     unsortedOneIntegerList = null;
     sortedOneIntegerList = null;
 
     unsortedTwoIntegerList = null;
     sortedTwoIntegerList = null;
-    
+
     unsortedIntegerList = null;
     sortedIntegerList = null;
-    
+
     unsortedTinyIntegerList = null;
     sortedTinyIntegerList = null;
-    
+
     unsortedStringList = null;
     sortedStringList = null;
 
@@ -138,11 +136,11 @@ public abstract class AbstractListSorterTest extends TestCase {
       assertEquals(expected.next(), actual.next());
     }   
   }
-  
+
   public void testSortTwoInts() {
     ListSorter<Integer> sorter = createListSorter();
     List<Integer> result = sorter.sort(unsortedTwoIntegerList);
-    
+
     assertEquals(unsortedTwoIntegerList.size(), result.size());
 
     Iterator<Integer> actual = result.iterator();
@@ -152,11 +150,11 @@ public abstract class AbstractListSorterTest extends TestCase {
       assertEquals(expected.next(), actual.next());
     }   
   }
-  
+
   public void testSortSimpleInts() {
     ListSorter<Integer> sorter = createListSorter();
     List<Integer> result = sorter.sort(unsortedIntegerList);
-    
+
     assertEquals(unsortedIntegerList.size(), result.size());
 
     Iterator<Integer> actual = result.iterator();
@@ -166,11 +164,11 @@ public abstract class AbstractListSorterTest extends TestCase {
       assertEquals(expected.next(), actual.next());
     }   
   }
-  
+
   public void testTinySortedInts() {
     ListSorter<Integer> sorter = createListSorter();
     List<Integer> result = sorter.sort(unsortedTinyIntegerList);
-    
+
     assertEquals(unsortedTinyIntegerList.size(), result.size());
 
     Iterator<Integer> actual = result.iterator();
@@ -180,11 +178,11 @@ public abstract class AbstractListSorterTest extends TestCase {
       assertEquals(expected.next(), actual.next());
     }    
   }
-  
+
   public void testSortSimpleStrings() {
     ListSorter<String> sorter = createListSorter();
     List<String> result = sorter.sort(unsortedStringList);
-    
+
     assertEquals(unsortedStringList.size(), result.size());
 
     Iterator<String> actual = result.iterator();
@@ -198,7 +196,7 @@ public abstract class AbstractListSorterTest extends TestCase {
   public void testSortSimpleLongs() {
     ListSorter<Timestamp> sorter = createListSorter();
     List<Timestamp> result = sorter.sort(unsortedTimestampList);
-    
+
     assertEquals(unsortedTimestampList.size(), result.size());
 
     Iterator<Timestamp> actual = result.iterator();
